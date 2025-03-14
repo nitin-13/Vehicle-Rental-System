@@ -10,6 +10,7 @@ VehicleRentalSystem/
 ├── Vehicle.java
 ├── Car.java
 ├── Motorcycle.java
+├── Bus.java
 ├── Customer.java
 ├── Rental.java
 ├── RentalSystem.java
