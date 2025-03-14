@@ -1,70 +1,94 @@
 package com.vehiclerentals;
+import com.vehiclerentals.vehicles.*;
 
-import com.vehiclerentals.vehicles.Vehicle;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class RentalSystem {
-    private List<Customer> customers = new ArrayList<>();
-    private List<Vehicle> vehicles = new ArrayList<>();
-    private List<Rental> rentals = new ArrayList<>();
+    public static void main(String[] args) {
 
-    public void addVehicle(Vehicle vehicle){
-        vehicles.add(vehicle);
-    }
+        Scanner in = new Scanner(System.in);
+        Rental rental = new Rental();
+        String custId;
+        String vehicleId;
 
-    public void addCustomer(Customer customer){
-        customers.add(customer);
-    }
+        Vehicle car = new Car("1", "Toyota", "Fortuner", 5000, "SUV", "Diesel");
+        Vehicle bus = new Bus("2", "Volvo", "B11R", 10000, "Multi-Axle");
+        Vehicle bike = new Motorcycle("3", "Royal Enfield", "Interceptor 650", 2000, "Geared");
+        Vehicle scooter = new Motorcycle("4", "Honda", "Activa", 1000, "Non Geared");
+        Vehicle jeep = new Jeep("5", "Mahindra", "Thar", 6500, "Soft Top");
 
-    public void rentVehicle(Customer customer,Vehicle vehicle, int noOfDays){
-        if(vehicle.isRented()){
-            System.out.println("Vehicle is already rented");
-        }else {
-            vehicle.setRented(true);
-            Rental rental = new Rental(customer,vehicle,noOfDays);
-            rentals.add(rental);
-            System.out.println("Vehicle rented for "+noOfDays+" days. Total cost of renting will be : ₹"+(vehicle.getRentRate() * noOfDays));
-        }
-    }
+        rental.addVehicle(car);
+        rental.addVehicle(bus);
+        rental.addVehicle(bike);
+        rental.addVehicle(scooter);
+        rental.addVehicle(jeep);
 
-    public void returnVehicle(Vehicle vehicle){
-        vehicle.setRented(false);
-    }
+        Customer cust1 = new Customer("C1", "NS", "XY111");
+        Customer cust2 = new Customer("C3", "US", "XY222");
+        Customer cust3 = new Customer("C3", "XX", "XY3333");
+        Customer cust4 = new Customer("C4", "YY", "XY4444");
+        Customer cust5 = new Customer("C5", "ZZ", "XY5555");
 
-    public void displayCustomers(){
-        for(Customer cust : customers){
-            System.out.println(cust);
-        }
-    }
+        rental.addCustomer(cust1);
+        rental.addCustomer(cust2);
+        rental.addCustomer(cust3);
+        rental.addCustomer(cust4);
+        rental.addCustomer(cust5);
 
-    public void displayRentals(){
-        for(Rental rental : rentals){
-            System.out.println(rental);
-        }
-    }
+        while (true) {
+            System.out.println("Welcome to the Vehicle Renting Service :\n");
+            System.out.println("1. Rent a vehicle");
+            System.out.println("2. Return a vehicle");
+            System.out.println("3. Display Available Vehicles");
+            System.out.println("4. Display Rented Vehicles");
+            System.out.println("5. Display All Customers");
+            System.out.println("6. Display All Vehicles");
+            System.out.println("7. Exit\n");
+            System.out.print("Enter your choice -> ");
 
-    public void displayAllVehicles() {
-        for (Vehicle vehicle : vehicles) {
-            System.out.println(vehicle);
-            }
-        }
-
-
-    public void displayAvailableVehicles() {
-//        System.out.println("Available Vehicles:");
-        for (Vehicle vehicle : vehicles) {
-            if (!vehicle.isRented()) {
-                System.out.println("Vehicle ID: " + vehicle.getVehicleId() + ", Make: " + vehicle.getMake() + ", Model: " + vehicle.getModel() + ", Rental Rate: ₹" + vehicle.getRentRate());
-            }
-        }
-    }
-
-    public void displayRentedVehicles() {
-        for (Vehicle vehicle : vehicles) {
-            if (vehicle.isRented()) {
-                System.out.println("Vehicle ID: " + vehicle.getVehicleId() + ", Make: " + vehicle.getMake() + ", Model: " + vehicle.getModel() + ", Rental Rate: ₹" + vehicle.getRentRate());
+            int choice = in.nextInt();
+            switch (choice) {
+                case 1:
+                    rental.displayAllCustomers();
+                    System.out.print("Enter your Customer ID -> ");
+                    in.nextLine();
+                    custId = in.nextLine();
+                    System.out.println("Below vehicles are available, please select the vehicle ID which you want to rent :");
+                    rental.displayAvailableVehicles();
+                    System.out.print("Enter VehicleID -> ");
+                    vehicleId = in.nextLine();
+                    System.out.print("Enter No. of days -> ");
+                    int noOfDays = in.nextInt();
+                    rental.rentVehicle(custId, vehicleId, noOfDays);
+                    break;
+                case 2:
+                    rental.displayAllCustomers();
+                    System.out.print("Enter your Customer ID -> ");
+                    in.nextLine();
+                    custId = in.nextLine();
+                    System.out.println("Below vehicles are rented by you, please select the vehicle ID which you want to return :");
+                   rental.findCustomer(custId).getRentedVehicles();
+                    vehicleId = in.nextLine();
+                    rental.returnVehicle(custId, vehicleId);
+                    break;
+                case 3:
+                    rental.displayAvailableVehicles();
+                    break;
+                case 4:
+                    rental.displayRentedVehicles();
+                    break;
+                case 5:
+                    rental.displayAllCustomers();
+                    break;
+                case 6:
+                    rental.displayAllVehicles();
+                    break;
+                case 7:
+                    System.out.println("Exiting...");
+                    in.close();
+                    return;
+                default:
+                    System.out.println("Invalid Choice. Please try again.");
             }
         }
     }

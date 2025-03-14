@@ -52,8 +52,12 @@ public abstract class Vehicle {
         return isRented;
     }
 
-    public void setRented(boolean rented) {
-        isRented = rented;
+    public void rentVehicle() {
+        this.isRented = true;
+    }
+
+    public void returnVehicle() {
+        this.isRented = false;
     }
 
     public abstract void displayDetails();
