@@ -4,11 +4,11 @@ public abstract class Vehicle {
     private String vehicleId;
     private String make;
     private String model;
-    private String rentRate;
+    private double rentRate;
     private boolean isRented;
 
 
-    public Vehicle(String vehicleId, String make, String model, String rentRate, boolean isRented) {
+    public Vehicle(String vehicleId, String make, String model, double rentRate) {
         this.vehicleId = vehicleId;
         this.make = make;
         this.model = model;
@@ -40,11 +40,11 @@ public abstract class Vehicle {
         this.model = model;
     }
 
-    public String getRentRate() {
+    public double getRentRate() {
         return rentRate;
     }
 
-    public void setRentRate(String rentRate) {
+    public void setRentRate(double rentRate) {
         this.rentRate = rentRate;
     }
 
