@@ -6,15 +6,18 @@ Data Structures: ArrayList is used
 
 ## Project Structure:
 ```
-VehicleRentalSystem/
-├── Vehicle.java
-├── Car.java
-├── Motorcycle.java
-├── Bus.java
-├── Customer.java
-├── Rental.java
-├── RentalSystem.java
-└── Main.java
+VehicleRentalSystem
+          /com.vehiclerentals
+                     └── vehicles
+                     ├── Vehicle.java
+                     ├── Car.java
+                     ├── Motorcycle.java
+                     ├── Bus.java
+                     └── Main.java
+         ├── Customer.java
+         ├── Rental.java
+         ├── RentalSystem.java
+         └── Main.java
 ```
 
 ## Classes:
