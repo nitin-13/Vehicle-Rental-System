@@ -12,12 +12,10 @@ VehicleRentalSystem
                      ├── Vehicle.java
                      ├── Car.java
                      ├── Motorcycle.java
-                     ├── Bus.java
-                     └── Main.java
+                     └── Bus.java
          ├── Customer.java
          ├── Rental.java
-         ├── RentalSystem.java
-         └── Main.java
+         └── RentalSystem.java
 ```
 
 ## Classes:
@@ -40,8 +38,6 @@ VehicleRentalSystem
 
 4. Customer.java: Represents customers.
 
-5. Rental.java: Represents a rental transaction.
+5. Rental.java: Represents a rental transaction, manages vehicles, customers, and rentals.
 
-6. RentalSystem.java: Manages vehicles, customers, and rentals.
-
-7. Main.java: The main class to drive the system.
+6. RentalSystem.java: Drives the entire system.

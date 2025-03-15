@@ -47,11 +47,11 @@ public class RentalSystem {
             System.out.print("Enter your choice -> ");
 
             int choice = in.nextInt();
+            in.nextLine();
             switch (choice) {
                 case 1:
                     rental.displayAllCustomers();
                     System.out.print("Enter your Customer ID -> ");
-                    in.nextLine();
                     custId = in.nextLine();
                     System.out.println("Below vehicles are available, please select the vehicle ID which you want to rent :");
                     rental.displayAvailableVehicles();
@@ -64,7 +64,6 @@ public class RentalSystem {
                 case 2:
                     rental.displayAllCustomers();
                     System.out.print("Enter your Customer ID -> ");
-                    in.nextLine();
                     custId = in.nextLine();
                     System.out.println("Below vehicles are rented by you, please select the vehicle ID which you want to return :");
                    rental.findCustomer(custId).getRentedVehicles();
